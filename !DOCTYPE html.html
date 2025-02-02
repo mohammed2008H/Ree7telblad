@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>REETT EL BLOD</title>
+  
+  <!-- Google Fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" 
+    rel="stylesheet"
+  >
+
+  <!-- Font Awesome (for social icons/arrows) -->
+  <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+  <!-- ^ Replace “your-kit-code” with your own Font Awesome kit or omit if not needed -->
+
+  <style>
+    :root {
+      --primary-color: #111;    /* Dark charcoal */
+      --accent-color:  #da291c; /* Bold red or pick any color you like */
+      --bg-color:      #fefefe;
+      --text-color:    #333;
+      --font-body:     'Poppins', sans-serif;
+    }
+
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    /* NAVBAR */
+    nav {
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--primary-color);
+    }
+    nav .logo {
+      color: white;
+      font-size: 1.7rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s ease-in-out;
+    }
+    nav ul li a:hover {
+      opacity: 0.6;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 6rem 1rem;
+      background: url('YOUR-OLIVE-BRANCH-IMAGE.jpg') center/cover no-repeat; 
+      /* ^ Replace with your own background or the olive branch artwork pattern. */
+      color: white;
+    }
+    .hero::after {
+      /* A dark overlay so the text is legible */
+      content: "";
+      position: absolute;
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 0;
+    }
+    .hero .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .hero .cta-btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: #fff;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .hero .cta-btn:hover {
+      background-color: #bb0000; /* or some darker accent shade */
+    }
+
+    /* OFFERS SECTION */
+    .offers-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .offers-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .offers-carousel {
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto;
+      width: 80%;
+      max-width: 800px;
+      background-color: #fafafa;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .offer-slide {
+      display: none; 
+      padding: 2rem;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .offer-slide.active {
+      display: block;
+    }
+    /* Hover effect on each slide */
+    .offer-slide:hover {
+      background-color: rgba(250, 250, 250, 0.8);
+      transform: scale(1.02);
+      cursor: pointer;
+    }
+
+    /* ARROW CONTROLS */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--accent-color);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      z-index: 2;
+    }
+    .arrow:hover {
+      background-color: #bb0000;
+    }
+    .arrow-left {
+      left: 1rem;
+    }
+    .arrow-right {
+      right: 1rem;
+    }
+
+    /* PRODUCTS SECTION */
+    .products-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .products-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .product-card {
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .product-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    .product-card p {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+    
+    /* EXTRA TEXT / LAYOUT */
+    .extra-info {
+      max-width: 800px;
+      margin: 4rem auto;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .extra-info h2 {
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--primary-color);
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+    footer p {
+      margin-bottom: 1rem;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      align-items: center;
+    }
+    .social-links a {
+      color: #fff;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .social-links a:hover {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <!-- Use your custom name or even an <img> if you like -->
+    <a href="#" class="logo">REETT EL BLOD</a>
+    <ul>
+      <li><a href="#offers">Offers</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#extra-info">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>One-Day Pop-Up: Palestinian Goods</h1>
+      <p>Hoodies, Food, Squid Game Cookies &amp; Masks — all in one exclusive day!</p>
+      <a href="#products" class="cta-btn">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- OFFERS SECTION -->
+  <section class="offers-section" id="offers">
+    <h2>Exclusive Offers</h2>
+    <div class="offers-carousel">
+      
+      <!-- Left arrow -->
+      <button class="arrow arrow-left" onclick="prevOffer()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <!-- SLIDE 1 -->
+      <div class="offer-slide active">
+        <h3>Special Offer #1</h3>
+        <p>Get 20% off your next purchase!</p>
+      </div>
+      <!-- SLIDE 2 -->
+      <div class="offer-slide">
+        <h3>Special Offer #2</h3>
+        <p>Buy 2 Palestinian Hoodies, get 1 free!</p>
+      </div>
+      <!-- SLIDE 3 -->
+      <div class="offer-slide">
+        <h3>Special Offer #3</h3>
+        <p>Squid Game Cookie + Mask Bundle 15% off!</p>
+      </div>
+
+      <!-- Right arrow -->
+      <button class="arrow arrow-right" onclick="nextOffer()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="products-section" id="products">
+    <h2>Our Products</h2>
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="hoodie.jpg" alt="Palestinian Hoodie"/>
+        <h3>Palestinian Hoodie</h3>
+        <p>$39.99</p>
+        <button>Add to Cart</button>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="food.jpg" alt="Palestinian Food"/>
+        <h3>Authentic Palestinian Food</h3>
+        <p>$14.99</p>
+        <button>Add to Cart</button>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="squid-game-cookie.jpg" alt="Squid Game Cookie"/>
+        <h3>Squid Game Cookies</h3>
+        <p>$9.99</p>
+        <button>Add to Cart</button>
+      </div>
+      <!-- Product 4 -->
+      <div class="product-card">
+        <img src="squid-game-mask.jpg" alt="Squid Game Mask"/>
+        <h3>Squid Game Mask</h3>
+        <p>$14.99</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRA TEXT SECTION (OPTIONAL) -->
+  <section class="extra-info" id="extra-info">
+    <h2>About Our One-Day Business</h2>
+    <p>
+      Welcome to our special pop-up event! We’re students excited to share 
+      Palestinian culture with authentic apparel and food, plus fun 
+      Squid Game‑inspired treats. We only open for <strong>one day</strong>, 
+      so don’t miss out!
+    </p>
+    <p>
+      All proceeds go toward our school’s cultural event fund. Come visit 
+      us and learn more about Palestinian heritage through a taste of 
+      tradition and pop culture.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; <span id="year"></span> REETT EL BLOD</p>
+    <p>Only open for one day at our school!</p>
+    <div class="social-links">
+      <!-- Instagram -->
+      <a href="https://instagram.com" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com" target="_blank">
+        <i class="fab fa-tiktok"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Offer carousel logic
+    const slides = document.querySelectorAll('.offer-slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextOffer() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevOffer() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Automatically cycle offers every 4 seconds
+    setInterval(nextOffer, 4000);
+  </script>
+</body>
+</html>
+
